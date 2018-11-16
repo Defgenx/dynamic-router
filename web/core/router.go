@@ -26,8 +26,15 @@ func (r *Router) SetRoutes(routeList []config.Route) {
 	}
 }
 
-func actionRouterByName(myStruct interface{}, funcName string) func(http.ResponseWriter, *http.Request) {
-	myStructValue := reflect.ValueOf(myStruct)
-	m := myStructValue.MethodByName(funcName)
-	return m.Interface().(func(http.ResponseWriter, *http.Request))
+func actionRouterByName(myStruct interface{}, funcName string) func( http.ResponseWriter, *http.Request) {
+	val := reflect.ValueOf(myStruct)
+	t := val.Type()
+	if t.Kind() != reflect.Ptr {
+		panic("Error 'myStruct' parameter should be a struct pointer.")
+	}
+	method := val.MethodByName(funcName)
+	if !method.IsValid() {
+		panic("Error method name is not valid.")
+	}
+	return method.Interface().(func(http.ResponseWriter, *http.Request))
 }

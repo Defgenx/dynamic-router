@@ -1,9 +1,9 @@
 routes:
-- name: helloworld
-  url: /hello-world
-  method: HelloWorld
-  httpMethod: GET
-- name: hellofrance
-  url: /hello-france
-  method: HelloFrance
-  httpMethod: GET
+  - name: helloworld
+    url: /hello-world
+    method: HelloWorld
+    httpMethod: GET
+  - name: hellofrance
+    url: /hello-france
+    method: HelloFrance
+    httpMethod: GET

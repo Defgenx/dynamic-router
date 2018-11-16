@@ -20,6 +20,6 @@ func main() {
 
 	err := http.ListenAndServe(ADDRESS, nil)
 	if err != nil {
-		log.Fatal("An error occured when trying to serve app API on : \n", err)
+		log.Fatal("An error occured when trying to serve app on : \n", err)
 	}
 }
